@@ -1,6 +1,5 @@
 require "nvchad.options"
 
--- add yours here!
 
 local config_dir = "custom"
 local scan = require("plenary.scandir").scan_dir  -- Requires `nvim-lua/plenary.nvim`
@@ -16,5 +15,3 @@ for _, file in ipairs(files) do
   end
 end
 
--- local o = vim.o
--- o.cursorlineopt ='both' -- to enable cursorline!
