@@ -29,6 +29,9 @@ return {
     },
   },
   {
+    "nvim-treesitter/nvim-treesitter-context",
+  },
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     config = function()
       require "configs.render-markdown"
