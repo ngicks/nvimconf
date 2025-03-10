@@ -1,7 +1,4 @@
-local is_wsl = vim.fn.has("wsl") == 1
-
-if is_wsl then
-  -- Use `win32yank.exe` for clipboard integration on WSL
+if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
     copy = {
