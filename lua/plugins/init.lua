@@ -38,4 +38,9 @@ return {
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" }, -- Ensure Treesitter is installed
   },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = true,
+  }
 }
