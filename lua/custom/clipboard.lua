@@ -1,17 +1,16 @@
-if vim.fn.has("wsl") == 1 then
+if vim.fn.has "wsl" == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
     copy = {
-      ["+"] = "clip.exe",
-      ["*"] = "clip.exe",
+      ["+"] = "xsel -bi",
+      ["*"] = "xsel -bi",
     },
     paste = {
-      ["+"] = "powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))",
-      ["*"] = "powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))",
+      ["+"] = 'xsel -bo',
+      ["*"] = 'xsel -bo',
     },
     cache_enabled = 0,
   }
 else
-  -- Use system clipboard for native Linux
   vim.opt.clipboard = "unnamedplus"
 end
