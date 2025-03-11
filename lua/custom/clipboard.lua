@@ -6,8 +6,8 @@ if vim.fn.has "wsl" == 1 then
       ["*"] = "xsel -bi",
     },
     paste = {
-      ["+"] = 'xsel -bo',
-      ["*"] = 'xsel -bo',
+      ["+"] = "xsel -bo",
+      ["*"] = "xsel -bo",
     },
     cache_enabled = 0,
   }

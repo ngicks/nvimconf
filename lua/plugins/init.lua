@@ -6,41 +6,31 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
+    opts = require "configs.lspconfig",
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = require "configs.mason-lspconfig",
   },
   {
     "nvim-lua/plenary.nvim",
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "vim",
-        "lua",
-        "vimdoc",
-        "html",
-        "css",
-        "markdown",
-        "go",
-        "rust",
-      },
-    },
+    opts = require "configs.treesitter",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
+    opts = require "configs.treesitter-context"
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    config = function()
-      require "configs.render-markdown"
-    end,
+    opts = require "configs.render-md",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
     "akinsho/toggleterm.nvim",
     version = "*",
     config = true,
-  }
+  },
 }
