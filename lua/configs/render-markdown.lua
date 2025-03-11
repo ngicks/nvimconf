@@ -1,4 +1,4 @@
-require('render-markdown').setup({
+local options = {
     heading = {},
     quote = { repeat_linebreak = true },
     code = {
@@ -7,4 +7,6 @@ require('render-markdown').setup({
         right_pad = 4,
     },
     bullet = { icons = { '', ''} },
-})
+}
+
+return options

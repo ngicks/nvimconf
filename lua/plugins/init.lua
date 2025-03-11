@@ -36,7 +36,7 @@ return {
     config = function()
       require "configs.render-markdown"
     end,
-    dependencies = { "nvim-treesitter/nvim-treesitter" }, -- Ensure Treesitter is installed
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
     "akinsho/toggleterm.nvim",
