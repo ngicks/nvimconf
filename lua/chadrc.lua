@@ -8,11 +8,15 @@ local M = {}
 M.base46 = {
   theme = "chadracula-evondev",
   theme_toggle = { "chadracula-evondev", "rosepine-dawn" },
+}
 
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+M.term = {
+  float = {
+    row = 0.05,
+    col = 0.05,
+    width = 0.9,
+    height = 0.8,
+  },
 }
 
 -- M.nvdash = { load_on_startup = true }
