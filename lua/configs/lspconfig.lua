@@ -3,7 +3,7 @@ require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
 
-local servers = { "html", "cssls", "ts_ls" }
+local servers = { "html", "cssls", "ts_ls", "pyright" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -14,6 +14,9 @@ for _, lsp in ipairs(servers) do
     capabilities = nvlsp.capabilities,
   }
 end
+
+-- split settings for each language to separate files?
+-- hook to call these setup using lazy.nvim feature? I dunno how tho :(
 
 lspconfig.lua_ls.setup {
   on_attach = nvlsp.on_attach,
