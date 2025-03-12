@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
   {
@@ -27,6 +27,7 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    event = "VeryLazy",
     opts = require "configs.render-md",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
