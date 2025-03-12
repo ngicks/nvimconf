@@ -6,7 +6,8 @@
 local M = {}
 
 M.base46 = {
-	theme = "chadracula-evondev",
+  theme = "chadracula-evondev",
+  theme_toggle = { "chadracula-evondev", "rosepine-dawn" },
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
