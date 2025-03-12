@@ -21,6 +21,10 @@ map("n", "<leader>mr", function()
   require("render-markdown").toggle()
 end, { desc = "Toggle Markdown Rendering" })
 
+map("n", "<leader>mn", ":MemoNew<CR>", { desc = "create a new memo" })
+map("n", "<leader>ml", ":Telescope memo list<CR>", { desc = "telescope memo list" })
+map("n", "<leader>mg", ":Telescope memo live_grep<CR>", { desc = "telescope memo live grep" })
+
 map(
   "n",
   "<leader>gg",

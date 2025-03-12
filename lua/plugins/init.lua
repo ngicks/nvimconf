@@ -35,4 +35,18 @@ return {
     version = "*",
     config = true,
   },
+  {
+    "glidenote/memolist.vim",
+    event = "VeryLazy",
+    config = function()
+      require "configs.memolist"
+    end,
+  },
+  {
+    "delphinus/telescope-memo.nvim",
+    config = function()
+      require "configs.telescope-memo"
+    end,
+    dependencies = { "glidenote/memolist.vim", "nvim-telescope/telescope.nvim" },
+  },
 }
