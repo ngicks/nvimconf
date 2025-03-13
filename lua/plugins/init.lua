@@ -64,10 +64,12 @@ return {
   },
   {
     "kevinhwang91/nvim-bqf", -- preview for quick list items
-    event = "QuickFixCmdPre",
+    dependencies = { "junegunn/fzf" },
     opts = require "lazyconf.bqf_opts",
+    -- Opening quickfix window itself can't be hooked? fall back to VeryLazy to ensure it works
+    event = { "QuickFixCmdPre", "VeryLazy" },
+    cmd = { "Telescope", "Telescope live_grep" },
   },
-  -- util / command
   {
     "akinsho/toggleterm.nvim",
     config = true,
