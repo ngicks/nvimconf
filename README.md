@@ -17,3 +17,11 @@ Say thanks to https://nvchad.com/
 - `configs.lazy` -> `conf.lazy`: config files eagerly loaded
 - `configs` -> `lazyconf`: config files for lazy.nvim
 - `setup`: eagerly loaded setup files; automatically loaded.
+
+## Prerequisite
+
+- `npm` and `node`: use volta: https://volta.sh/
+- `go`: https://go.dev/
+- `lazygit`: https://github.com/jesseduffield/lazygit
+- `fzf`: https://github.com/junegunn/fzf
+- `xsel`: http://github.com/kfish/xsel
