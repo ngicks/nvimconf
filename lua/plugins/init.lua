@@ -2,7 +2,7 @@ return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
-    opts = require "configs.conform",
+    opts = require "lazyconf.conform",
   },
   {
     "nvim-lua/plenary.nvim",
@@ -10,11 +10,11 @@ return {
   -- lsp
   {
     "neovim/nvim-lspconfig",
-    opts = require "configs.lspconfig",
+    opts = require "lazyconf.lspconfig",
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = require "configs.mason-lspconfig",
+    opts = require "lazyconf.mason-lspconfig",
   },
   -- telescope
   {
@@ -30,24 +30,24 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
-    opts = require "configs.treesitter",
+    opts = require "lazyconf.treesitter",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = { "BufReadPre", "BufNewFile" },
-    opts = require "configs.treesitter-context",
+    opts = require "lazyconf.treesitter-context",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
     event = "BufReadPost *.md",
-    opts = require "configs.render-md",
+    opts = require "lazyconf.render-md",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
     "kevinhwang91/nvim-bqf", -- preview for quick list items
     event = "QuickFixCmdPre",
-    opts = require "configs.bqf",
+    opts = require "lazyconf.bqf",
   },
   -- util / command
   {
@@ -60,14 +60,14 @@ return {
   {
     "glidenote/memolist.vim",
     config = function()
-      require "configs.memolist"
+      require "lazyconf.memolist"
     end,
     cmd = { "MemoNew" },
   },
   {
     "delphinus/telescope-memo.nvim",
     config = function()
-      require "configs.telescope-memo"
+      require "lazyconf.telescope-memo"
     end,
     dependencies = { "glidenote/memolist.vim", "nvim-telescope/telescope.nvim" },
     cmd = { "Telescope memo list", "Telescope memo live_grep" },
