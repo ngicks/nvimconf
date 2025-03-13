@@ -3,78 +3,39 @@ require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
 
-local servers = { "html", "cssls", "ts_ls", "pyright" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
+local servers = {
+  html = {},
+  cssls = {},
+  pyright = {},
+  clangd = {},
+  rust_analyzer = {},
+}
+
+local default_setups = {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+}
+
+local sepecial_setups = { "lazyconf.lsp_setup.go", "lazyconf.lsp_setup.ts" }
+
+for _, setup in ipairs(sepecial_setups) do
+  require(setup).config(servers, default_setups)
 end
 
--- split settings for each language to separate files?
--- hook to call these setup using lazy.nvim feature? I dunno how tho :(
+-- lsps with default config
+for name, lsp in pairs(servers) do
+  lspconfig[name].setup(vim.tbl_deep_extend("keep", lsp, default_setups))
+end
 
-lspconfig.lua_ls.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-  settings = {
-    Lua = {
-      hint = { enable = true },
-    },
-  },
-}
-
-lspconfig.gopls.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-  settings = {
-    gopls = {
-      semanticTokens = true,
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      hints = {
-        assignVariableTypes = true,
-        compositeLiteralFields = true,
-        compositeLiteralTypes = true,
-        constantValues = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
-      },
-    },
-  },
-}
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-    local params = vim.lsp.util.make_range_params()
-    params.context = { only = { "source.organizeImports" } }
-    -- buf_request_sync defaults to a 1000ms timeout. Depending on your
-    -- machine and codebase, you may want longer. Add an additional
-    -- argument after params if you find that you have to write the file
-    -- twice for changes to be saved.
-    -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
-    for cid, res in pairs(result or {}) do
-      for _, r in pairs(res.result or {}) do
-        if r.edit then
-          local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
-          vim.lsp.util.apply_workspace_edit(r.edit, enc)
-        end
-      end
-    end
-    vim.lsp.buf.format { async = false }
-  end,
-})
+for _, setup in ipairs(sepecial_setups) do
+  local lsp_cfg = require(setup)
+  if lsp_cfg.setup then
+    lsp_cfg.setup()
+  end
+end
 
 return {
   inlay_hints = { enabled = true },
