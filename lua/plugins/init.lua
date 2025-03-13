@@ -1,8 +1,26 @@
+-- General rule:
+--
+-- lists every plugins
+-- opts, configs, inits may be stored in separate lua scripts.
+-- Each script file may have name its plugin name with suffix _opts, _configs, etc.
+-- Scripts may have nvim suffix or prefix omitted in their name.
+--
+-- orders are
+--  - SPEC LOADING
+--    - dependencies, enabled, cond, priority
+--  - SPEC SETUP
+--    - init, opts, config, main, build
+--  - SPEC LAZY LOADING
+--    - lazy, event, cmd, ft, keys
+--  - SPEC VERSIONING
+--    - branch, tag, commit, version, pin, submodule
+--  - SPEC ADVANCED
+--    - optional, specs, module, import
 return {
   {
     "stevearc/conform.nvim",
+    opts = require "lazyconf.conform_opts",
     event = "BufWritePre",
-    opts = require "lazyconf.conform",
   },
   {
     "nvim-lua/plenary.nvim",
@@ -10,66 +28,65 @@ return {
   -- lsp
   {
     "neovim/nvim-lspconfig",
-    opts = require "lazyconf.lspconfig",
+    opts = require "lazyconf.lspconfig_opts",
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = require "lazyconf.mason-lspconfig",
+    opts = require "lazyconf.mason-lspconfig_opts",
   },
   -- telescope
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("telescope").load_extension "fzf"
     end,
+    build = "make",
     keys = "<leader>",
   },
   -- visual helper
   {
     "nvim-treesitter/nvim-treesitter",
+    opts = require "lazyconf.treesitter_opts",
     event = { "BufReadPre", "BufNewFile" },
-    opts = require "lazyconf.treesitter",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = require "lazyconf.treesitter-context",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = require "lazyconf.treesitter-context_opts",
+    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    event = "BufReadPost *.md",
-    opts = require "lazyconf.render-md",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = require "lazyconf.render-markdown_opts",
+    event = "BufReadPost *.md",
   },
   {
     "kevinhwang91/nvim-bqf", -- preview for quick list items
     event = "QuickFixCmdPre",
-    opts = require "lazyconf.bqf",
+    opts = require "lazyconf.bqf_opts",
   },
   -- util / command
   {
     "akinsho/toggleterm.nvim",
-    event = "VeryLazy",
-    version = "*",
     config = true,
+    event = "VeryLazy",
   },
   -- memo
   {
     "glidenote/memolist.vim",
     config = function()
-      require "lazyconf.memolist"
+      require "lazyconf.memolist_config"
     end,
     cmd = { "MemoNew" },
   },
   {
     "delphinus/telescope-memo.nvim",
-    config = function()
-      require "lazyconf.telescope-memo"
-    end,
     dependencies = { "glidenote/memolist.vim", "nvim-telescope/telescope.nvim" },
+    config = function()
+      require "lazyconf.telescope-memo_config"
+    end,
     cmd = { "Telescope memo list", "Telescope memo live_grep" },
   },
 }
