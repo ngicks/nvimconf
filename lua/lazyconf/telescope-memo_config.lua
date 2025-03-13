@@ -13,7 +13,7 @@ end
 local conf_path = dir .. "/config.toml"
 
 if vim.fn.filereadable(conf_path) == 0 then
-  require "lazyconf.memolist" -- ensure g setup
+  require "lazyconf.memolist_config" -- ensure g setup
   local conf_content = {
     'memodir = "' .. vim.g.memolist_path .. '"',
     'editor = "nvim"',
