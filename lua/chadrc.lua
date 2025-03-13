@@ -9,7 +9,7 @@ M.base46 = {
   theme = "chadracula-evondev",
   theme_toggle = { "chadracula-evondev", "rosepine-dawn" },
   hl_add = {
-    CUR_BUF_PATH = {
+    CUR_BUF_PATH = { -- use color mutation so that it can blend in on any theme.
       fg = "#A9A9A9",
       bg = "#3A3A3A",
     },

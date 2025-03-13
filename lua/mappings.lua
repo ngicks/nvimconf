@@ -25,9 +25,6 @@ map("n", "<leader>mn", ":MemoNew<CR>", { desc = "create a new memo" })
 map("n", "<leader>ml", ":Telescope memo list<CR>", { desc = "telescope memo list" })
 map("n", "<leader>mg", ":Telescope memo live_grep<CR>", { desc = "telescope memo live grep" })
 
-map(
-  "n",
-  "<leader>gg",
-  "<cmd>lua LazygitToggle()<CR>",
-  { noremap = true, silent = true, desc = "Toggle lazygit floating window" }
-)
+map("n", "<leader>gg", function()
+  require("lazyconf.toggleterm_cmd.lazygit_floating"):toggle()
+end, { noremap = true, silent = true, desc = "Toggle lazygit floating window" })

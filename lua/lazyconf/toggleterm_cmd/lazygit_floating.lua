@@ -17,6 +17,4 @@ local lazygit = Terminal:new {
   end,
 }
 
-function LazygitToggle()
-  lazygit:toggle()
-end
+return lazygit
