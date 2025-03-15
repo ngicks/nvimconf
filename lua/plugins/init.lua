@@ -29,6 +29,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = require "lazyconf.lspconfig_opts",
+    config = function(p, opt)
+      require "lazyconf.lspconfig_config"(p, opt)
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
