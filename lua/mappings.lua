@@ -28,3 +28,20 @@ map("n", "<leader>mg", ":Telescope memo live_grep<CR>", { desc = "telescope memo
 map("n", "<leader>gg", function()
   require("lazyconf.toggleterm_cmd.lazygit_floating"):toggle()
 end, { noremap = true, silent = true, desc = "Toggle lazygit floating window" })
+-- luadev
+map("n", "<leader>ld", function()
+  require("luadev").start()
+end, { desc = ":Luadev" })
+
+map("n", "<leader>ll", function()
+  require("luadev").exec(vim.api.nvim_get_current_line())
+end, { desc = "run current line of lua script" })
+
+local buffer_to_string = function()
+  local content = vim.api.nvim_buf_get_lines(0, 0, vim.api.nvim_buf_line_count(0), false)
+  return table.concat(content, "\n")
+end
+
+map("n", "<leader>lf", function()
+  require("luadev").exec(buffer_to_string())
+end, { desc = "eval whole current buffer as lua script" })

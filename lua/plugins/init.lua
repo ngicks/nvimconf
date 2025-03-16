@@ -93,4 +93,8 @@ return {
     end,
     cmd = { "Telescope memo list", "Telescope memo live_grep" },
   },
+  -- debug
+  { -- gets buffer content then eval in nvim as lua script.
+    "bfredl/nvim-luadev",
+  },
 }
