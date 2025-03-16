@@ -9,7 +9,8 @@ local function setup(p, opts)
   local servers = {
     html = {},
     cssls = {},
-    pyright = {},
+    marksman = {}, -- markdown
+    pyright = {}, -- python
     clangd = {},
     rust_analyzer = {},
   }
