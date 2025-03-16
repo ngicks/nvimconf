@@ -90,7 +90,7 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = require "lazyconf.render-markdown_opts",
-    event = "BufReadPost *.md",
+    event = { "BufReadPost *.md", "BufReadPost *.mdx" },
   },
   {
     "kevinhwang91/nvim-bqf", -- preview for quick list items
