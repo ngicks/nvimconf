@@ -27,7 +27,7 @@ local function setup(p, opts)
     providers[name] = require(name)
   end
 
-  for _, provider in ipairs(providers) do
+  for _, provider in pairs(providers) do
     provider.config(servers, default_setups)
   end
 
@@ -35,7 +35,7 @@ local function setup(p, opts)
     lspconfig[name].setup(vim.tbl_deep_extend("keep", lsp, default_setups))
   end
 
-  for _, provider in ipairs(providers) do
+  for _, provider in pairs(providers) do
     if provider.setup then
       provider.setup()
     end
