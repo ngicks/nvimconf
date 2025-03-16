@@ -47,6 +47,12 @@ return {
     build = "make",
     keys = "<leader>",
   },
+  {
+    "nvim-telescope/telescope-live-grep-args.nvim",
+    config = function()
+      require "lazyconf.telescope-live-grep-args_config"
+    end,
+  },
   -- visual helper
   {
     "nvim-treesitter/nvim-treesitter",
@@ -57,6 +63,27 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = require "lazyconf.treesitter-context_opts",
+    event = { "BufReadPre", "BufNewFile" },
+  },
+  { -- list symbol list in the current buffer.
+    "bassamsdata/namu.nvim",
+    opts = require "lazyconf.namu_opts",
+    cmd = { "Namu symbols" },
+  },
+  {
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require("scrollbar").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+    end,
+    event = { "BufReadPre", "BufNewFile" },
+  },
+  {
+    "Bekaboo/dropbar.nvim",
+    dependencies = { "nvim-telescope/telescope-fzf-native.nvim" },
+    config = function()
+      require "lazyconf.dropbar_config"
+    end,
     event = { "BufReadPre", "BufNewFile" },
   },
   {

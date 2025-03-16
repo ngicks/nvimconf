@@ -17,17 +17,47 @@ if vim.lsp.inlay_hint then
   end, { desc = "Toggle Inlay Hints" })
 end
 
+-- use telescope live_grep_args in place of live_grep
+unmap("n", "<leader>fw")
+map(
+  "n",
+  "<leader>fw",
+  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  { desc = "telescope live grep args" }
+)
+
+-- Namu
+map("n", "<leader>ss", "<cmd>Namu symbols<cr>", {
+  desc = "List and jump to LSP symbols",
+  silent = true,
+})
+
+-- dropbar
+map("n", "<Leader>;", function()
+  require("dropbar.api").pick()
+end, { desc = "Pick symbols in winbar" })
+map("n", "[;", function()
+  require("dropbar.api").goto_context_start()
+end, { desc = "Go to start of current context" })
+map("n", "];", function()
+  require("dropbar.api").select_next_context()
+end, { desc = "Select next context" })
+
+-- markdown renderer
 map("n", "<leader>mr", function()
   require("render-markdown").toggle()
 end, { desc = "Toggle Markdown Rendering" })
 
+-- memo
 map("n", "<leader>mn", ":MemoNew<CR>", { desc = "create a new memo" })
 map("n", "<leader>ml", ":Telescope memo list<CR>", { desc = "telescope memo list" })
 map("n", "<leader>mg", ":Telescope memo live_grep<CR>", { desc = "telescope memo live grep" })
 
+-- lazygit
 map("n", "<leader>gg", function()
   require("lazyconf.toggleterm_cmd.lazygit_floating"):toggle()
 end, { noremap = true, silent = true, desc = "Toggle lazygit floating window" })
+
 -- luadev
 map("n", "<leader>ld", function()
   require("luadev").start()
