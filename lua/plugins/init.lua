@@ -68,7 +68,7 @@ return {
   { -- list symbol list in the current buffer.
     "bassamsdata/namu.nvim",
     opts = require "lazyconf.namu_opts",
-    cmd = { "Namu symbols" },
+    event = { "LspAttach" },
   },
   {
     "petertriho/nvim-scrollbar",
