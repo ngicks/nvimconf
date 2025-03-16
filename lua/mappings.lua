@@ -27,12 +27,9 @@ end
 
 -- use telescope live_grep_args in place of live_grep
 unmap("n", "<leader>fw")
-map(
-  "n",
-  "<leader>fw",
-  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-  { desc = "telescope live grep args" }
-)
+map("n", "<leader>fw", function()
+  require("telescope").extensions.live_grep_args.live_grep_args()
+end, { desc = "telescope live grep args" })
 
 -- Namu
 map("n", "<leader>ss", "<cmd>Namu symbols<cr>", {
