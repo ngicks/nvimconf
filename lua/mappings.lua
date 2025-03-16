@@ -4,6 +4,14 @@ local map = vim.keymap.set
 local unmap = vim.keymap.del
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
+map({ "i", "v" }, "<C-j>", "<ESC>", { desc = "back to normal mode. jj or jk is too agressive to me." })
+
+-- remove M-i for floating windows as ESC works as Alt.
+-- It is the terminal's behavior AFAIK.
+unmap({ "n", "t" }, "<M-i>")
+map({ "n", "t" }, "<M-f>", function()
+  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+end, { desc = "terminal toggle floating term" })
 
 -- remove nvchad's nvtree config and tie them nearly
 unmap("n", "<C-n>")
