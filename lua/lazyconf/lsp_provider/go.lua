@@ -2,9 +2,10 @@ local M = {}
 
 M.config = function(servers)
   servers.gopls = {
-    settings = {
+    settings = { -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
       gopls = {
         semanticTokens = true,
+        completeUnimported = true, -- not documented I think
         analyses = {
           unusedparams = true,
         },
