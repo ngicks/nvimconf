@@ -17,12 +17,7 @@
 --  - SPEC ADVANCED
 --    - optional, specs, module, import
 return {
-  {
-    "stevearc/conform.nvim",
-    opts = require "lazyconf.conform_opts",
-    event = "BufWritePre",
-  },
-  {
+  { -- utils
     "nvim-lua/plenary.nvim",
   },
   -- lsp
@@ -36,6 +31,29 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = require "lazyconf.mason-lspconfig_opts",
+  },
+  { -- format file types where lsp is not available.
+    "stevearc/conform.nvim",
+    opts = require "lazyconf.conform_opts",
+    event = "BufWritePre",
+  },
+  { -- inject non-lsp tools as lsp client
+    "mfussenegger/nvim-lint",
+    config = function()
+      require "lazyconf.lint_config"
+    end,
+    event = "BufWritePost",
+  },
+  { -- display lsp symbols, diagnoses
+    "folke/trouble.nvim",
+    opts = require "lazyconf.trouble_opts",
+    event = { "LspAttach" },
+    cmd = "Trouble",
+  },
+  { -- list symbols in the current buffer in floating window. search and jump
+    "bassamsdata/namu.nvim",
+    opts = require "lazyconf.namu_opts",
+    event = { "LspAttach" },
   },
   -- telescope
   {
@@ -65,11 +83,6 @@ return {
     opts = require "lazyconf.treesitter-context_opts",
     event = { "BufReadPre", "BufNewFile" },
   },
-  { -- list symbol list in the current buffer.
-    "bassamsdata/namu.nvim",
-    opts = require "lazyconf.namu_opts",
-    event = { "LspAttach" },
-  },
   {
     "petertriho/nvim-scrollbar",
     config = function()
@@ -78,7 +91,7 @@ return {
     end,
     event = { "BufReadPre", "BufNewFile" },
   },
-  {
+  { -- display breadcrumb list at top of the buffer.
     "Bekaboo/dropbar.nvim",
     dependencies = { "nvim-telescope/telescope-fzf-native.nvim" },
     config = function()
@@ -92,8 +105,8 @@ return {
     opts = require "lazyconf.render-markdown_opts",
     event = { "BufReadPost *.md", "BufReadPost *.mdx" },
   },
-  {
-    "kevinhwang91/nvim-bqf", -- preview for quick list items
+  { -- preview for quick list items
+    "kevinhwang91/nvim-bqf",
     dependencies = { "junegunn/fzf" },
     opts = require "lazyconf.bqf_opts",
     -- Opening quickfix window itself can't be hooked? fall back to VeryLazy to ensure it works

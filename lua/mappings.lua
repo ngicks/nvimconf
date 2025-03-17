@@ -4,7 +4,8 @@ local map = vim.keymap.set
 local unmap = vim.keymap.del
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
-map({ "i", "v" }, "<C-j>", "<ESC>", { desc = "back to normal mode. jj or jk is too agressive to me." })
+-- jj or jk is too agressive to me.
+map({ "i", "v" }, "<C-j>", "<ESC>", { desc = "back to normal mode." })
 
 -- remove M-i for floating windows as ESC works as Alt.
 -- It is the terminal's behavior AFAIK.
@@ -19,6 +20,9 @@ unmap("n", "<leader>e")
 map("n", "<leader>et", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 map("n", "<leader>ef", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
 
+-- theme selector is unnecessary for now.
+unmap("n", "<leader>th")
+
 if vim.lsp.inlay_hint then
   map("n", "<leader>uh", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -31,7 +35,21 @@ map("n", "<leader>fw", function()
   require("telescope").extensions.live_grep_args.live_grep_args()
 end, { desc = "telescope live grep args" })
 
--- Namu
+-- trouble
+
+map("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+map("n", "<leader>tT", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics (Trouble)" })
+map("n", "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
+map(
+  "n",
+  "<leader>tl",
+  "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+  { desc = "LSP Definitions / references / ... (Trouble)" }
+)
+map("n", "<leader>tL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
+map("n", "<leader>tQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
+
+-- -- Namu
 map("n", "<leader>ss", "<cmd>Namu symbols<cr>", {
   desc = "List and jump to LSP symbols",
   silent = true,
