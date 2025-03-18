@@ -18,6 +18,11 @@ local plugins = {
   { -- utils
     "nvim-lua/plenary.nvim",
   },
+  -- management
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+  },
   -- lsp
   {
     "neovim/nvim-lspconfig",
@@ -71,17 +76,18 @@ local plugins = {
     dependencies = { "nvim-telescope/telescope-fzf-native.nvim" },
     event = { "BufReadPre", "BufNewFile" },
   },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = { "BufReadPost *.md", "BufReadPost *.mdx", "BufNewFile *.md", "BufNewFile *.mdx" },
-  },
   { -- preview for quick list items
     "kevinhwang91/nvim-bqf",
     dependencies = { "junegunn/fzf" },
     -- Opening quickfix window itself can't be hooked? fall back to VeryLazy to ensure it works
     event = { "QuickFixCmdPre", "VeryLazy" },
     cmd = { "Telescope", "Telescope live_grep" },
+  },
+  -- renderer
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = { "BufReadPost *.md", "BufReadPost *.mdx", "BufNewFile *.md", "BufNewFile *.mdx" },
   },
   {
     "akinsho/toggleterm.nvim",
