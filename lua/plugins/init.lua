@@ -47,7 +47,6 @@ local plugins = {
     "nvim-telescope/telescope-fzf-native.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function() end,
-    build = "make",
     keys = "<leader>",
   },
   {
@@ -75,7 +74,7 @@ local plugins = {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = { "BufReadPost *.md", "BufReadPost *.mdx" },
+    event = { "BufReadPost *.md", "BufReadPost *.mdx", "BufNewFile *.md", "BufNewFile *.mdx" },
   },
   { -- preview for quick list items
     "kevinhwang91/nvim-bqf",
@@ -118,7 +117,6 @@ for _, plugin in ipairs(plugins) do
       plugin[f] = conf[f]
     end
   end
- 
 end
 
 return plugins
