@@ -1,5 +1,4 @@
 require "nvchad.mappings"
-
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
@@ -7,6 +6,13 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 -- jj or jk is too agressive to me.
 map({ "i", "v" }, "<C-j>", "<ESC>", { desc = "back to normal mode." })
 map("n", "<C-W>t", "<cmd>tabnew<cr>", { desc = "new tab." })
+
+if vim.lsp.inlay_hint then
+  map("n", "<leader>uh", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  end, { desc = "Toggle Inlay Hints" })
+end
+
 -- remove M-i for floating windows as ESC works as Alt.
 -- It is the terminal's behavior AFAIK.
 unmap({ "n", "t" }, "<M-i>")
@@ -22,12 +28,6 @@ map("n", "<leader>ef", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window
 
 -- theme selector is unnecessary for now.
 unmap("n", "<leader>th")
-
-if vim.lsp.inlay_hint then
-  map("n", "<leader>uh", function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-  end, { desc = "Toggle Inlay Hints" })
-end
 
 -- use telescope live_grep_args in place of live_grep
 unmap("n", "<leader>fw")
@@ -67,9 +67,12 @@ map("n", "];", function()
 end, { desc = "Select next context" })
 
 -- markdown renderer
-map("n", "<leader>mr", function()
+map("n", "<leader>rm", function()
   require("render-markdown").toggle()
 end, { desc = "Toggle Markdown Rendering" })
+
+-- csv renderer
+map("n", "<leader>rc", "<cmd>CsvViewToggle<cr>", { desc = "Toggle csv rendering" })
 
 -- memo
 map("n", "<leader>mn", ":MemoNew<CR>", { desc = "create a new memo" })

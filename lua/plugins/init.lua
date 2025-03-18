@@ -90,6 +90,11 @@ local plugins = {
     event = { "BufReadPost *.md", "BufReadPost *.mdx", "BufNewFile *.md", "BufNewFile *.mdx" },
   },
   {
+    "hat0uma/csvview.nvim",
+    event = { "BufReadPost *.csv", "BufNewFile *.csv" },
+    cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+  },
+  {
     "akinsho/toggleterm.nvim",
   },
   -- memo
