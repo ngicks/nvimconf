@@ -1,4 +1,6 @@
-return {
+local M = {}
+
+M.opts = {
   ensure_installed = {
     "vim",
     "lua",
@@ -10,3 +12,5 @@ return {
     "rust",
   },
 }
+
+return M

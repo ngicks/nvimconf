@@ -1,4 +1,6 @@
-local options = {
+local M = {}
+
+M.opts = {
   formatters_by_ft = {
     lua = { "stylua" },
     css = { "prettier" },
@@ -12,5 +14,4 @@ local options = {
     lsp_fallback = true,
   },
 }
-
-return options
+return M

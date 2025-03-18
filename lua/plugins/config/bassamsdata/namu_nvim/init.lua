@@ -1,4 +1,6 @@
-return {
+local M = {}
+
+M.opts = {
   -- Enable the modules you want
   namu_symbols = {
     enable = true,
@@ -12,6 +14,8 @@ return {
       -- NOTE: if you activate persist, then please remove any vim.cmd("colorscheme ...") in your config, no needed anymore
       persist = true, -- very efficient mechanism to Remember selected colorscheme
       write_shada = false, -- If you open multiple nvim instances, then probably you need to enable this
-   },
+    },
   },
 }
+
+return M

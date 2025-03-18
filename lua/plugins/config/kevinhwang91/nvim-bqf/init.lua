@@ -1,4 +1,6 @@
-return {
+local M = {}
+
+M.opts = {
   auto_enable = true,
   auto_resize_height = true, -- highly recommended enable
   preview = {
@@ -38,3 +40,5 @@ return {
     },
   },
 }
+
+return M

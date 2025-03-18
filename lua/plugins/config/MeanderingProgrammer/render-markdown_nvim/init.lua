@@ -1,4 +1,6 @@
-local options = {
+local M = {}
+
+M.opts = {
   heading = {},
   quote = { repeat_linebreak = true },
   code = {
@@ -9,4 +11,4 @@ local options = {
   bullet = { icons = { "", "" } },
 }
 
-return options
+return M

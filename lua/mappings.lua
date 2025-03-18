@@ -6,7 +6,7 @@ local unmap = vim.keymap.del
 map("n", ";", ":", { desc = "CMD enter command mode" })
 -- jj or jk is too agressive to me.
 map({ "i", "v" }, "<C-j>", "<ESC>", { desc = "back to normal mode." })
-
+map("n", "<C-W>t", "<cmd>tabnew<cr>", { desc = "new tab." })
 -- remove M-i for floating windows as ESC works as Alt.
 -- It is the terminal's behavior AFAIK.
 unmap({ "n", "t" }, "<M-i>")
@@ -78,7 +78,7 @@ map("n", "<leader>mg", ":Telescope memo live_grep<CR>", { desc = "telescope memo
 
 -- lazygit
 map("n", "<leader>gg", function()
-  require("lazyconf.toggleterm_cmd.lazygit_floating"):toggle()
+  require("toggleterm_cmd.lazygit_floating"):toggle()
 end, { noremap = true, silent = true, desc = "Toggle lazygit floating window" })
 
 -- luadev

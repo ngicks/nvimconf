@@ -1,5 +1,10 @@
--- load defaults i.e lua_lsp
-local function setup(p, opts)
+local M = {}
+
+M.opts = {
+  inlay_hints = { enabled = true },
+}
+
+M.config = function(_, opts)
   require("nvchad.configs.lspconfig").defaults()
 
   local lspconfig = require "lspconfig"
@@ -21,13 +26,9 @@ local function setup(p, opts)
     capabilities = nvlsp.capabilities,
   })
 
-  local providerNames = { "lazyconf.lsp_provider.go", "lazyconf.lsp_provider.ts" }
-  local providers = {}
-  for _, name in ipairs(providerNames) do
-    providers[name] = require(name)
-  end
+  local providers = require("func.scan_conf_dir").load_local_dir("plugins/config/neovim/nvim-lspconfig/lsp_provider", true)
 
-  for _, provider in pairs(providers) do
+  for _, provider in ipairs(providers) do
     provider.config(servers, default_setups)
   end
 
@@ -35,11 +36,11 @@ local function setup(p, opts)
     lspconfig[name].setup(vim.tbl_deep_extend("keep", lsp, default_setups))
   end
 
-  for _, provider in pairs(providers) do
+  for _, provider in ipairs(providers) do
     if provider.setup then
       provider.setup()
     end
   end
 end
 
-return setup
+return M

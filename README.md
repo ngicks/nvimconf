@@ -14,7 +14,7 @@ Say thanks to https://nvchad.com/
 
 ## Changes / Structures
 
-- `configs.lazy` -> `conf.lazy`: config files eagerly loaded
+- `configs`: config files eagerly loaded
 - `configs` -> `lazyconf`: config files for lazy.nvim
 - `setup`: eagerly loaded setup files; automatically loaded.
 
