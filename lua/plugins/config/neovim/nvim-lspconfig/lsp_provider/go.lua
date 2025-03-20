@@ -24,7 +24,7 @@ M.config = function(servers)
   }
 end
 
-M.setup = function()
+M.post_setup = function()
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
     callback = function()

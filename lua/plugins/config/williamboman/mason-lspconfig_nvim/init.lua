@@ -6,11 +6,6 @@ M.opts = {
     -- and will be called for each installed server that doesn't have
     -- a dedicated handler.
     function(server_name) -- default handler (optional)
-      require("lspconfig")[server_name].setup {}
-    end,
-    -- Next, you can provide targeted overrides for specific servers.
-    ["rust_analyzer"] = function()
-      require("rust-tools").setup {}
     end,
   },
 }

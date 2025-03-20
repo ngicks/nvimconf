@@ -26,7 +26,8 @@ M.config = function(_, opts)
     capabilities = nvlsp.capabilities,
   })
 
-  local providers = require("func.scan_conf_dir").load_local_dir("plugins/config/neovim/nvim-lspconfig/lsp_provider", true)
+  local providers =
+    require("func.scan_conf_dir").load_local_dir("plugins/config/neovim/nvim-lspconfig/lsp_provider", true)
 
   for _, provider in ipairs(providers) do
     provider.config(servers, default_setups)
@@ -37,8 +38,8 @@ M.config = function(_, opts)
   end
 
   for _, provider in ipairs(providers) do
-    if provider.setup then
-      provider.setup()
+    if provider.post_setup then
+      provider.post_setup()
     end
   end
 end

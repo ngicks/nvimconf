@@ -2,7 +2,6 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
 -- jj or jk is too agressive to me.
 map({ "i", "v" }, "<C-j>", "<ESC>", { desc = "back to normal mode." })
 map("n", "<C-W>t", "<cmd>tabnew<cr>", { desc = "new tab." })

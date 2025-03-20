@@ -29,6 +29,30 @@ local plugins = {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    event = { "VeryLazy" },
+  },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = { "williamboman/mason.nvim" },
+    event = { "LspAttach" },
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    event = { "VeryLazy" },
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    event = { "VeryLazy" },
+  },
+  { -- java
+    "mfussenegger/nvim-jdtls",
+    ft = { "java" },
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+    },
   },
   { -- format file types where lsp is not available.
     "stevearc/conform.nvim",
@@ -49,13 +73,16 @@ local plugins = {
   },
   -- telescope
   {
+    "nvim-telescope/telescope.nvim",
+  },
+  {
     "nvim-telescope/telescope-fzf-native.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function() end,
     keys = "<leader>",
   },
   {
     "nvim-telescope/telescope-live-grep-args.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
   },
   -- visual helper
   {
@@ -81,7 +108,6 @@ local plugins = {
     dependencies = { "junegunn/fzf" },
     -- Opening quickfix window itself can't be hooked? fall back to VeryLazy to ensure it works
     event = { "QuickFixCmdPre", "VeryLazy" },
-    cmd = { "Telescope", "Telescope live_grep" },
   },
   -- renderer
   {
