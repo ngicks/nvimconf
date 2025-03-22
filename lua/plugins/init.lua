@@ -120,6 +120,19 @@ local plugins = {
     event = { "BufReadPost *.csv", "BufNewFile *.csv" },
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
   },
+  { -- database fales
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod" },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" } }, -- Optional
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+  },
   {
     "akinsho/toggleterm.nvim",
   },
